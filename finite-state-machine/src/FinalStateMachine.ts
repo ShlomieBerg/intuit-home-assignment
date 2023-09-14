@@ -32,6 +32,10 @@ export class FinalStateMachine {
         return this._state;
     }
 
+    set state(state: string) {
+        this._state = state
+    }
+
     dispatch(actionName: string): void {
         const action = this.stateActions()[actionName];
         if (action) {

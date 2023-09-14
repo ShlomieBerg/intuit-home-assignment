@@ -13,6 +13,7 @@ export declare class FinalStateMachine {
     private _transitions;
     constructor(initialState: string, transitions: Transition);
     get state(): string;
+    set state(state: string);
     dispatch(actionName: string): void;
     private stateActions;
 }
