@@ -1,0 +1,14 @@
+{
+  "name": "finite-state-machine",
+  "version": "1.0.0",
+  "description": "finite state machine model",
+  "main": "index.js",
+  "scripts": {
+    "build": "rm -rf dist/lib && tsc"
+  },
+  "author": "Shlomie Berg",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.2.2"
+  }
+}
