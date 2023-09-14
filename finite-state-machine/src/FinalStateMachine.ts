@@ -28,11 +28,11 @@ export class FinalStateMachine {
         this._transitions = transitions; 
     }
 
-    get state(): string {
+    get getMachineState(): string {
         return this._state;
     }
 
-    set state(state: string) {
+    set setMachineState(state: string) {
         this._state = state
     }
 

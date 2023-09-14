@@ -14,10 +14,10 @@ class FinalStateMachine {
         this._state = initialState;
         this._transitions = transitions;
     }
-    get state() {
+    get getMachineState() {
         return this._state;
     }
-    set state(state) {
+    set setMachineState(state) {
         this._state = state;
     }
     dispatch(actionName) {
