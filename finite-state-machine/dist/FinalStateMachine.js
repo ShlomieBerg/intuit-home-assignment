@@ -14,23 +14,20 @@ class FinalStateMachine {
         this._state = initialState;
         this._transitions = transitions;
     }
-    get getMachineState() {
+    get state() {
         return this._state;
     }
-    set setMachineState(state) {
+    set state(state) {
         this._state = state;
     }
     dispatch(actionName) {
-        const action = this.stateActions()[actionName];
+        const action = this._transitions[this._state][actionName];
         if (action) {
             action.call(this);
         }
         else {
-            throw new ActionError("Action name does not exists.");
+            throw new ActionError(`Action name: ${actionName} does not exists.`);
         }
-    }
-    stateActions() {
-        return this._transitions[this._state];
     }
 }
 exports.FinalStateMachine = FinalStateMachine;

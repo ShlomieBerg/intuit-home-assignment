@@ -9,12 +9,11 @@ export declare class ActionError extends Error {
     constructor(message: string);
 }
 export declare class FinalStateMachine {
-    private _state;
-    private _transitions;
+    _state: string;
+    _transitions: Transition;
     constructor(initialState: string, transitions: Transition);
-    get getMachineState(): string;
-    set setMachineState(state: string);
+    get state(): string;
+    set state(state: string);
     dispatch(actionName: string): void;
-    private stateActions;
 }
 export {};
