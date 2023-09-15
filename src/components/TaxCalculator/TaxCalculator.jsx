@@ -7,7 +7,9 @@ import {
 	TaxSummary,
 } from './components';
 
-const TAX_STATE_URL = 'http://127.0.0.1:3001/tax-refund-machine';
+// https://beeceptor.com/console/finite-state-machine
+const TAX_STATE_URL =
+	'https://finite-state-machine.free.beeceptor.com/tax-refund-machine';
 const TaxCalculator = () => {
 	const machineRef = useRef(null);
 	const [step, setStep] = useState(null);
@@ -16,7 +18,7 @@ const TaxCalculator = () => {
 		fetch(TAX_STATE_URL)
 			.then((res) => res.json())
 			.then((res) => {
-				const actions = res.stateActions;
+				const actions = res['stateActions'];
 				const transitions = Object.keys(actions).reduce(
 					(stateActions, state) => {
 						stateActions[state] = Object.keys(actions[state]).reduce(
@@ -34,9 +36,9 @@ const TaxCalculator = () => {
 					{}
 				);
 
-				machineRef.current = new FSM(res.initialState, transitions);
+				machineRef.current = new FSM(res['initialState'], transitions);
 
-				setStep(res.initialState);
+				setStep(res['initialState']);
 			})
 			.catch((e) => console.error(e));
 	}, []);
