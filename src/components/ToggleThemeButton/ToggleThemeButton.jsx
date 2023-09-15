@@ -1,40 +1,19 @@
-import { FSM } from 'finite-state-machine';
-import { useState, useMemo } from 'react';
+import { useContext } from 'react';
 import { Button } from 'semantic-ui-react';
+import { ThemeContext } from '../../providers/ThemeProvider';
+// import { useDarkModeMachine } from '../../FSM/DarkModeMachine.jsx';
 
 const ToggleThemeButton = () => {
-	const [isActive, setIsActive] = useState(false);
-	const machine = useMemo(
-		() =>
-			new FSM('light', {
-				light: { toggle: toggleTheme },
-				dark: { toggle: toggleTheme },
-			}),
-		[]
-	);
-
-	function toggleTheme() {
-		const prevTheme = machine.state;
-		machine.state = prevTheme === 'light' ? 'dark' : 'light';
-		const theme = machine.state;
-
-		document.body.classList.add(`${theme}-mode`);
-		document.body.classList.remove(`${prevTheme}-mode`);
-	}
-
-	const _onClick = () => {
-		machine.dispatch('toggle');
-		setIsActive(machine.state === 'dark');
-	};
-
+	const { theme, dispatch, inverted, buttonColor } = useContext(ThemeContext);
 	return (
 		<div style={{ padding: '0 0.5em' }}>
 			<Button
-				active={isActive}
-				onClick={_onClick}
+				active={inverted}
+				onClick={() => dispatch('toggle')}
 				circular
 				toggle
-				content={machine.state}
+				color={buttonColor}
+				content={theme}
 			/>
 		</div>
 	);

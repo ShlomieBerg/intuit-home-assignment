@@ -13,7 +13,7 @@ const Header = () => {
 			<ToggleThemeButton />
 			<div style={{ color: '#365ebf', width: '100%', textAlign: 'center' }}>
 				<h2>Shlomie Berg</h2>
-				<h3>Senior Frontend engineer Candidate @ Intuit.</h3>
+				<h3>Software Engineer.</h3>
 			</div>
 		</div>
 	);

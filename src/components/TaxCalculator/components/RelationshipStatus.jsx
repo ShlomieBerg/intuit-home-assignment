@@ -26,12 +26,12 @@ const RelationshipStatus = () => {
 							height: 150,
 							width: 150,
 							marginBottom: '5px',
-							border: status === userStatus ? '1px solid blue' : null,
+							border: status === userStatus ? '2px solid #89CFF0' : null,
 						}}
 					>
 						<Placeholder.Image square />
 					</Placeholder>
-					{status}
+					<h3>{status.charAt(0).toUpperCase() + status.slice(1)}</h3>
 				</div>
 			);
 		});

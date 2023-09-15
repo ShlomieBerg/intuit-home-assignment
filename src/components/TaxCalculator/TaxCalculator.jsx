@@ -1,49 +1,20 @@
-import { useState, useRef, useEffect } from 'react';
-import { FSM } from 'finite-state-machine';
+import { useContext } from 'react';
 import { Step, Button, Loader, Dimmer } from 'semantic-ui-react';
 import {
 	PersonalInformation,
 	RelationshipStatus,
 	TaxSummary,
 } from './components';
+import { ThemeContext } from '../../providers/ThemeProvider';
+import { useTaxMachine } from '../../hooks/useTaxMachine';
 
-// https://beeceptor.com/console/finite-state-machine
-const TAX_STATE_URL =
-	'https://finite-state-machine.free.beeceptor.com/tax-refund-machine';
 const TaxCalculator = () => {
-	const machineRef = useRef(null);
-	const [step, setStep] = useState(null);
+	const { buttonColor } = useContext(ThemeContext);
 
-	useEffect(() => {
-		fetch(TAX_STATE_URL)
-			.then((res) => res.json())
-			.then((res) => {
-				const actions = res['stateActions'];
-				const transitions = Object.keys(actions).reduce(
-					(stateActions, state) => {
-						stateActions[state] = Object.keys(actions[state]).reduce(
-							(transitions, transition) => {
-								transitions[transition] = setNextState.bind(
-									null,
-									actions[state][transition]
-								);
-								return { ...transitions };
-							},
-							{}
-						);
-						return { ...stateActions };
-					},
-					{}
-				);
+	const { step, dispatch, isFirstStep, isSecondStep, isThirdStep } =
+		useTaxMachine();
 
-				machineRef.current = new FSM(res['initialState'], transitions);
-
-				setStep(res['initialState']);
-			})
-			.catch((e) => console.error(e));
-	}, []);
-
-	if (!machineRef.current) {
+	if (!step) {
 		return (
 			<Dimmer active inverted>
 				<Loader />
@@ -51,24 +22,16 @@ const TaxCalculator = () => {
 		);
 	}
 
-	function setNextState(nextState) {
-		if (!machineRef) {
-			return;
-		}
-		machineRef.current.state = nextState;
-		setStep(machineRef.current.state);
-	}
-
 	return (
 		<div style={{ margin: '2em auto 0' }}>
 			<Step.Group ordered>
-				<Step completed={step > 1} active={step === '1'}>
+				<Step completed={isSecondStep || isThirdStep} active={isFirstStep}>
 					<Step.Content>
 						<Step.Title>Personal Information</Step.Title>
 					</Step.Content>
 				</Step>
 
-				<Step completed={step > 2} active={step === '2'}>
+				<Step completed={isThirdStep} active={isSecondStep}>
 					<Step.Content>
 						<Step.Title>Relationship Status</Step.Title>
 						<Step.Description>
@@ -77,28 +40,32 @@ const TaxCalculator = () => {
 					</Step.Content>
 				</Step>
 
-				<Step completed={step === 3}>
+				<Step completed={isThirdStep}>
 					<Step.Content>
 						<Step.Title>Summary</Step.Title>
 					</Step.Content>
 				</Step>
 			</Step.Group>
 			<div style={{ height: '300px' }}>
-				{step === '1' && <PersonalInformation />}
-				{step === '2' && <RelationshipStatus />}
-				{step === '3' && <TaxSummary />}
+				{isFirstStep && <PersonalInformation />}
+				{isSecondStep && <RelationshipStatus />}
+				{isThirdStep && <TaxSummary />}
 			</div>
-			<div style={{ margin: '50px 0 0 auto' }}>
-				<Button
-					content="Back"
-					onClick={() => machineRef.current.dispatch('prev')}
-					disabled={step === '1'}
-				/>
-				<Button
-					content="Next"
-					onClick={() => machineRef.current.dispatch('next')}
-					disabled={step === '3'}
-				/>
+			<div style={{ margin: '50px 0 0 auto', float: 'right' }}>
+				{(isSecondStep || isThirdStep) && (
+					<Button
+						color={buttonColor}
+						content="Back"
+						onClick={() => dispatch('prev')}
+					/>
+				)}
+				{(isFirstStep || isSecondStep) && (
+					<Button
+						color={buttonColor}
+						content="Next"
+						onClick={() => dispatch('next')}
+					/>
+				)}
 			</div>
 		</div>
 	);
