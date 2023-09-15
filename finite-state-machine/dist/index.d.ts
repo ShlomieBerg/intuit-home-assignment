@@ -1,1 +1,1 @@
-export { FinalStateMachine as FSM, ActionError } from './FinalStateMachine';
+export { FiniteStateMachine as FSM, ActionError } from './FiniteStateMachine';

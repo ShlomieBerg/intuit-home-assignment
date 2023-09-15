@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ActionError = exports.FSM = void 0;
-var FinalStateMachine_1 = require("./FinalStateMachine");
-Object.defineProperty(exports, "FSM", { enumerable: true, get: function () { return FinalStateMachine_1.FinalStateMachine; } });
-Object.defineProperty(exports, "ActionError", { enumerable: true, get: function () { return FinalStateMachine_1.ActionError; } });
+var FiniteStateMachine_1 = require("./FiniteStateMachine");
+Object.defineProperty(exports, "FSM", { enumerable: true, get: function () { return FiniteStateMachine_1.FiniteStateMachine; } });
+Object.defineProperty(exports, "ActionError", { enumerable: true, get: function () { return FiniteStateMachine_1.ActionError; } });

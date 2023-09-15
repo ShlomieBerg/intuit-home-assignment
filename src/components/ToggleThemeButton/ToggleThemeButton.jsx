@@ -21,7 +21,7 @@ const ToggleThemeButton = () => {
     }
       
 
-    return <div style={{ padding: '1em' }}><Button active={isActive} onClick={_onClick} circular toggle content={machine.state} /></div>
+    return <div style={{ padding: '0 0.5em' }}><Button active={isActive} onClick={_onClick} circular toggle content={machine.state} /></div>
 }
 
 export default ToggleThemeButton;

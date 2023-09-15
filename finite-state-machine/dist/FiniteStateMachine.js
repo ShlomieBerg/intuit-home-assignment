@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.FinalStateMachine = exports.ActionError = void 0;
+exports.FiniteStateMachine = exports.ActionError = void 0;
 class ActionError extends Error {
     constructor(message) {
         super(message);
@@ -8,8 +8,8 @@ class ActionError extends Error {
     }
 }
 exports.ActionError = ActionError;
-/* ===== Final State Machine ===== */
-class FinalStateMachine {
+/* ===== Finite State Machine ===== */
+class FiniteStateMachine {
     constructor(initialState, transitions) {
         this._state = initialState;
         this._transitions = transitions;
@@ -30,4 +30,4 @@ class FinalStateMachine {
         }
     }
 }
-exports.FinalStateMachine = FinalStateMachine;
+exports.FiniteStateMachine = FiniteStateMachine;

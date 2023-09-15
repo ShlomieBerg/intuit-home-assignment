@@ -18,8 +18,8 @@ export class ActionError extends Error {
     }
 }
 
-/* ===== Final State Machine ===== */
-export class FinalStateMachine {
+/* ===== Finite State Machine ===== */
+export class FiniteStateMachine {
     _state: string;
     _transitions: Transition;
 
