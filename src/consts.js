@@ -1,11 +1,11 @@
 let BASE_URL;
-if (process.env.REACT_APP_ENV && process.env.REACT_APP_ENV === "PROD")
+if (process.env.REACT_APP_ENV && process.env.REACT_APP_ENV === "development")
 {
     // https://beeceptor.com/console/finite-state-machine
-    BASE_URL = 'https://finite-state-machine.free.beeceptor.com';
+    BASE_URL = 'http://localhost:3001';
 } else
 {
-    BASE_URL = 'http://localhost:3001';
+    BASE_URL = 'https://finite-state-machine.free.beeceptor.com';
 }
 
 
