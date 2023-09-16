@@ -1,9 +1,8 @@
-type Action = () => void;
 type StateActions = {
-    [key: string]: Action;
+    [transition: string]: string;
 };
 type Transitions = {
-    [key: string]: StateActions;
+    [state: string]: StateActions;
 };
 type FiniteStateMachineArgs = {
     id: string;
@@ -17,8 +16,8 @@ export declare class FiniteStateMachine {
     _id: string;
     _state: string;
     _transitions: Transitions;
-    constructor({ id, initialState, transitions }: FiniteStateMachineArgs);
-    getInstance(id: string): FiniteStateMachine;
+    private constructor();
+    static getInstance(options: FiniteStateMachineArgs): FiniteStateMachine;
     get id(): string;
     get state(): string;
     set state(state: string);

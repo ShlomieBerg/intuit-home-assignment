@@ -1,20 +1,19 @@
 import { FSM_MACHINES } from "./globals";
 
 /* ===== Types ===== */
-type Action = () => void;
 
 type StateActions = { 
-    [key:string]: Action;
+    [transition: string]: string;
 };
 
 type Transitions = {
-    [key: string]: StateActions;
+    [state: string]: StateActions;
 }
 
 type FiniteStateMachineArgs = {
     id: string;
     initialState: string;
-    transitions: Transitions
+    transitions: Transitions;
 }
 
 /* ===== Custom errors ===== */
@@ -59,9 +58,9 @@ export class FiniteStateMachine {
     }
 
     dispatch(actionName: string): void {
-        const action = this._transitions[this._state][actionName];
-        if (action) {
-            action.call(this);
+        const newState = this._transitions[this._state][actionName];
+        if (newState) {
+            this.state = newState;
         } else {
             throw new FSMError(`Action name: ${actionName} does not exists.`);
         }

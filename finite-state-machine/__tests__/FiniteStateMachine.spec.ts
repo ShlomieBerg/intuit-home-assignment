@@ -3,14 +3,9 @@ import { FSM, FSMError } from "../src";
 
 const switchFSMInput = {
     id: "switchFSM", initialState: "off", transitions: {
-        "on": { "switch": toggleFunc },
-        "off": { "switch": toggleFunc }
+        "on": { "switch": "off" },
+        "off": { "switch": "on" }
     }
-}
-
-function toggleFunc()
-{
-    this.state = this.state === "on" ? "off" : "on"
 }
 
 describe("Finite State Machine tests", () =>
