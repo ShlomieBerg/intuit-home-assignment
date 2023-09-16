@@ -1,0 +1,1 @@
+export const RELATIONSHIP_STATUSES = ['married', 'single', 'its complicated'];

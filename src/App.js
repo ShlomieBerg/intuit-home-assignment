@@ -1,5 +1,4 @@
-import Header from './components/Header/Header.jsx';
-import TaxCalculator from './components/TaxCalculator/TaxCalculator.jsx';
+import { TaxCalculator, Header } from './components';
 import { ThemeProvider } from './providers/ThemeProvider.jsx';
 import './App.css';
 

@@ -1,22 +1,16 @@
 import { useState } from 'react';
 import { Placeholder } from 'semantic-ui-react';
-
-const STATUSES = ['married', 'single', 'its complicated'];
+import { RELATIONSHIP_STATUSES } from '../consts.js';
+import './RelationshipStatus.css';
 
 const RelationshipStatus = () => {
 	const [userStatus, setUserStatus] = useState(null);
 	const createItems = () => {
-		return STATUSES.map((status) => {
+		return RELATIONSHIP_STATUSES.map((status) => {
 			return (
 				<div
+					className={'relationshipStatusContainer'}
 					key={status}
-					style={{
-						margin: '5px',
-						display: 'flex',
-						flexDirection: 'column',
-						justifyContent: 'center',
-						alignItems: 'center',
-					}}
 					onClick={() => {
 						setUserStatus(status);
 					}}
@@ -38,7 +32,10 @@ const RelationshipStatus = () => {
 	};
 
 	return (
-		<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr' }}>
+		<div
+			className={'statusesContainer'}
+			style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr' }}
+		>
 			{createItems()}
 		</div>
 	);

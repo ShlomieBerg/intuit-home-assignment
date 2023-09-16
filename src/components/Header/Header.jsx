@@ -1,17 +1,11 @@
-import ToggleThemeButton from '../ToggleThemeButton/ToggleThemeButton.jsx';
+import { ToggleThemeButton } from '../ToggleThemeButton/';
+import './Header.css';
 
 const Header = () => {
 	return (
-		<div
-			style={{
-				display: 'flex',
-				flexDirection: 'col',
-				padding: '2em 0',
-				backgroundColor: 'lightgray',
-			}}
-		>
+		<div className={'headerContainer'}>
 			<ToggleThemeButton />
-			<div style={{ color: '#365ebf', width: '100%', textAlign: 'center' }}>
+			<div className={'headerParagraph'}>
 				<h2>Shlomie Berg</h2>
 				<h3>Software Engineer.</h3>
 			</div>

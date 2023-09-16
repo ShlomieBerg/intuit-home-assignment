@@ -1,11 +1,12 @@
 import { useContext } from 'react';
 import { Button } from 'semantic-ui-react';
 import { ThemeContext } from '../../providers/ThemeProvider';
+import './ToggleThemeButton.css';
 
 const ToggleThemeButton = () => {
 	const { theme, dispatch, inverted, buttonColor } = useContext(ThemeContext);
 	return (
-		<div style={{ padding: '0 0.5em' }}>
+		<div className={'toggleThemeButtonContainer'}>
 			<Button
 				active={inverted}
 				onClick={() => dispatch('toggle')}

@@ -1,0 +1,13 @@
+.headerContainer {
+    display: flex;
+    flex-direction: column;
+	padding: 2em 0;
+	background-color: lightgray;
+}
+
+
+.headerContainer .headerParagraph {
+    color: #365ebf;
+    width: 100%;
+    text-align: center;
+}

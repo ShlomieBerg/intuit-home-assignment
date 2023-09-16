@@ -7,10 +7,10 @@ import {
 } from './components';
 import { ThemeContext } from '../../providers/ThemeProvider';
 import { useTaxMachine } from '../../hooks/useTaxMachine';
+import './TaxCalculator.css';
 
 const TaxCalculator = () => {
 	const { buttonColor } = useContext(ThemeContext);
-
 	const { step, dispatch, isFirstStep, isSecondStep, isThirdStep } =
 		useTaxMachine();
 
@@ -23,7 +23,7 @@ const TaxCalculator = () => {
 	}
 
 	return (
-		<div style={{ margin: '2em auto 0' }}>
+		<div className={'taxCalculatorContainer'}>
 			<Step.Group ordered>
 				<Step completed={isSecondStep || isThirdStep} active={isFirstStep}>
 					<Step.Content>
@@ -46,12 +46,12 @@ const TaxCalculator = () => {
 					</Step.Content>
 				</Step>
 			</Step.Group>
-			<div style={{ height: '300px' }}>
+			<div className={'mainContent'}>
 				{isFirstStep && <PersonalInformation />}
 				{isSecondStep && <RelationshipStatus />}
 				{isThirdStep && <TaxSummary />}
 			</div>
-			<div style={{ margin: '50px 0 0 auto', float: 'right' }}>
+			<div className={'buttonsContainer'}>
 				{(isSecondStep || isThirdStep) && (
 					<Button
 						color={buttonColor}
