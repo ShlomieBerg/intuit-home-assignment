@@ -1,45 +1,48 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { FSM } from 'finite-state-machine';
+import { DARK_MODE_MACHINE_URL } from '../consts';
 
 export const ThemeContext = React.createContext({});
 
 export const ThemeProvider = ({ children }) => {
-	const [machineState, setMachineState] = useState('light');
+	const [theme, setTheme] = useState(null);
+	const machineRef = useRef(null);
 
-	const machine = useMemo(
-		() =>
-			FSM.getInstace({
-				id: 'darkModeMachine',
-				initialState: 'light',
-				transitions: {
-					light: { toggle: toggleTheme },
-					dark: { toggle: toggleTheme },
-				},
-			}),
-		[]
-	);
+	useEffect(() => {
+		fetch(DARK_MODE_MACHINE_URL)
+			.then((res) => res.json())
+			.then((res) => {
+				const { id, initialState, transitions } = res;
 
-	function toggleTheme() {
-		const prevTheme = machine.state;
-		machine.state = prevTheme === 'light' ? 'dark' : 'light';
-		const theme = machine.state;
+				machineRef.current = FSM.getInstance({
+					id,
+					initialState,
+					transitions,
+				});
 
-		document.body.classList.add(`${theme}-mode`);
-		document.body.classList.remove(`${prevTheme}-mode`);
-	}
+				setTheme(initialState);
+			})
+			.catch((e) => console.error(e));
+	}, []);
 
 	const _dispatch = (action) => {
+		const machine = machineRef.current;
+		const prevTheme = machine.state;
 		machine.dispatch(action);
-		setMachineState(machine.state);
+		const currTheme = machine.state;
+
+		document.body.classList.add(`${currTheme}-mode`);
+		document.body.classList.remove(`${prevTheme}-mode`);
+		setTheme(machine.state);
 	};
 
 	return (
 		<ThemeContext.Provider
 			value={{
-				theme: machineState,
+				theme,
 				dispatch: _dispatch,
-				buttonColor: machineState === 'dark' ? 'grey' : 'black',
-				inverted: machineState === 'dark',
+				buttonColor: theme === 'dark' ? 'grey' : 'black',
+				inverted: theme === 'dark',
 			}}
 		>
 			{children}

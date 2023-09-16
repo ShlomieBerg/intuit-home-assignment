@@ -1,7 +1,6 @@
 import { useContext } from 'react';
 import { Button } from 'semantic-ui-react';
 import { ThemeContext } from '../../providers/ThemeProvider';
-// import { useDarkModeMachine } from '../../FSM/DarkModeMachine.jsx';
 
 const ToggleThemeButton = () => {
 	const { theme, dispatch, inverted, buttonColor } = useContext(ThemeContext);
@@ -14,6 +13,7 @@ const ToggleThemeButton = () => {
 				toggle
 				color={buttonColor}
 				content={theme}
+				loading={!theme}
 			/>
 		</div>
 	);

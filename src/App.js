@@ -9,9 +9,9 @@ function App()
 
   return (
     <ThemeProvider>
-      <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+      <div className={'mainContainer'}>
         <Header />
-        <div style={{ height: '100%', margin: '0 auto' }}>
+        <div className={'bodyContainer'}>
           <TaxCalculator />
         </div>
       </div>

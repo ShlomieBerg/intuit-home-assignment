@@ -11,3 +11,14 @@ body, #root {
     color: #FFF;
     background-color: #333;
 }
+
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100%; 
+}
+
+.mainContainer .bodyContainer {
+    height: 100%;
+    margin: 0 auto;
+}

@@ -1,52 +1,27 @@
 import { useState, useRef, useEffect } from 'react';
 import { FSM } from 'finite-state-machine';
-
-// https://beeceptor.com/console/finite-state-machine
-const TAX_STATE_URL =
-	'https://finite-state-machine.free.beeceptor.com/tax-refund-machine';
-
-const TAX_STATE_URL_DEV = 'http://localhost:3001/tax-refund-machine';
+import { TAX_MACHINE_URL } from '../consts';
 
 export const useTaxMachine = () => {
 	const [step, setStep] = useState(null);
 	const machineRef = useRef(null);
 
 	useEffect(() => {
-		fetch(TAX_STATE_URL_DEV)
+		fetch(TAX_MACHINE_URL)
 			.then((res) => res.json())
 			.then((res) => {
-				const actions = res['stateActions'];
-				const transitions = Object.keys(actions).reduce(
-					(stateActions, state) => {
-						stateActions[state] = Object.keys(actions[state]).reduce(
-							(transitions, transition) => {
-								transitions[transition] = setNextState.bind(
-									null,
-									actions[state][transition]
-								);
-								return { ...transitions };
-							},
-							{}
-						);
-						return { ...stateActions };
-					},
-					{}
-				);
+				const { id, initialState, transitions } = res;
 
 				machineRef.current = FSM.getInstance({
-					id: 'taxMachine',
-					initialState: res['initialState'],
+					id,
+					initialState,
 					transitions,
 				});
 
-				setStep(res['initialState']);
+				setStep(initialState);
 			})
 			.catch((e) => console.error(e));
 	}, []);
-
-	function setNextState(nextState) {
-		machineRef.current.state = nextState;
-	}
 
 	const _dispatch = (action) => {
 		machineRef.current.dispatch(action);
