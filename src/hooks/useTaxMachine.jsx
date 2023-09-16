@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { FSM } from 'finite-state-machine';
-import { TAX_MACHINE_URL } from '../consts';
+import { TAX_MACHINE_URL, TAX_MACHINE_URL_DEV } from '../consts';
 
 export const useTaxMachine = () => {
 	const [step, setStep] = useState(null);

@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { FSM } from 'finite-state-machine';
-import { DARK_MODE_MACHINE_URL } from '../consts';
+import { DARK_MODE_MACHINE_URL, DARK_MODE_MACHINE_URL_DEV } from '../consts';
 
 export const ThemeContext = React.createContext({});
 
