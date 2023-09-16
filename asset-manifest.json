@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/intuit-home-assignment/static/css/main.243afb87.css",
-    "main.js": "/intuit-home-assignment/static/js/main.e62384be.js",
+    "main.css": "/intuit-home-assignment/static/css/main.eb89f258.css",
+    "main.js": "/intuit-home-assignment/static/js/main.6cce5e60.js",
     "static/media/brand-icons.svg": "/intuit-home-assignment/static/media/brand-icons.6729d29753e000c17489.svg",
     "static/media/icons.svg": "/intuit-home-assignment/static/media/icons.62d9dae4e0040e81c980.svg",
     "static/media/outline-icons.svg": "/intuit-home-assignment/static/media/outline-icons.9c4845b4b41ef40a22fa.svg",
@@ -19,11 +19,11 @@
     "static/media/outline-icons.woff": "/intuit-home-assignment/static/media/outline-icons.ddae9b1ba9b0b42f5880.woff",
     "static/media/outline-icons.woff2": "/intuit-home-assignment/static/media/outline-icons.687a4990ea22bb1a49d4.woff2",
     "index.html": "/intuit-home-assignment/index.html",
-    "main.243afb87.css.map": "/intuit-home-assignment/static/css/main.243afb87.css.map",
-    "main.e62384be.js.map": "/intuit-home-assignment/static/js/main.e62384be.js.map"
+    "main.eb89f258.css.map": "/intuit-home-assignment/static/css/main.eb89f258.css.map",
+    "main.6cce5e60.js.map": "/intuit-home-assignment/static/js/main.6cce5e60.js.map"
   },
   "entrypoints": [
-    "static/css/main.243afb87.css",
-    "static/js/main.e62384be.js"
+    "static/css/main.eb89f258.css",
+    "static/js/main.6cce5e60.js"
   ]
 }
