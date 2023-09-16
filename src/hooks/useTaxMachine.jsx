@@ -12,7 +12,7 @@ export const useTaxMachine = () => {
 	const machineRef = useRef(null);
 
 	useEffect(() => {
-		fetch(TAX_STATE_URL)
+		fetch(TAX_STATE_URL_DEV)
 			.then((res) => res.json())
 			.then((res) => {
 				const actions = res['stateActions'];
@@ -33,7 +33,7 @@ export const useTaxMachine = () => {
 					{}
 				);
 
-				machineRef.current = new FSM({
+				machineRef.current = FSM.getInstance({
 					id: 'taxMachine',
 					initialState: res['initialState'],
 					transitions,

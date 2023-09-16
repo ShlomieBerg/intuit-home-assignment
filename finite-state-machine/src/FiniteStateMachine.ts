@@ -1,8 +1,4 @@
-import { FSM } from ".";
-
-// Saves FSM machines by ID.
-const FSM_MACHINES = {};
-
+import { FSM_MACHINES } from "./globals";
 
 /* ===== Types ===== */
 type Action = () => void;
@@ -35,21 +31,19 @@ export class FiniteStateMachine {
     _state: string;
     _transitions: Transitions;
 
-    constructor({id, initialState, transitions}: FiniteStateMachineArgs) {
-        if (id in FSM_MACHINES) {
-            return this.getInstance(id);
-        }
+    private constructor({id, initialState, transitions}: FiniteStateMachineArgs) {
         this._id = id;
         this._state = initialState;
         this._transitions = transitions; 
         FSM_MACHINES[id] = this;
     }
 
-    getInstance(id: string): FiniteStateMachine {
+    static getInstance(options: FiniteStateMachineArgs): FiniteStateMachine {
+        const { id } = options;
         if (id in FSM_MACHINES) {
             return FSM_MACHINES[id];
         } 
-        throw new FSMError(`Machine with id: ${id} doesn't exists.`)
+        return new FiniteStateMachine(options);
     }
 
     get id(): string {

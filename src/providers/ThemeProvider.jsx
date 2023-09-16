@@ -8,7 +8,7 @@ export const ThemeProvider = ({ children }) => {
 
 	const machine = useMemo(
 		() =>
-			new FSM({
+			FSM.getInstace({
 				id: 'darkModeMachine',
 				initialState: 'light',
 				transitions: {
