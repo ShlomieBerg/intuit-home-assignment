@@ -3,7 +3,7 @@ import './Header.css';
 
 const Header = () => {
 	return (
-		<div className={'headerContainer'}>
+		<div data-testid="header" className={'headerContainer'}>
 			<ToggleThemeButton />
 			<div className={'headerParagraph'}>
 				<h2>Shlomie Berg</h2>

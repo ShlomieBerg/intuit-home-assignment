@@ -1,5 +1,5 @@
 let BASE_URL;
-if (process.env.REACT_APP_ENV && process.env.REACT_APP_ENV === "development")
+if (process.env.REACT_APP_MY_ENV && process.env.REACT_APP_MY_ENV === "development")
 {
     // https://beeceptor.com/console/finite-state-machine
     BASE_URL = 'http://localhost:3001';
